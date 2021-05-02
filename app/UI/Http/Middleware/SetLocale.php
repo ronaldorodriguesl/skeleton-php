@@ -17,12 +17,12 @@ class SetLocale
     {
         $locale = $request->header('Content-Language');
 
-        if(!isset($locale)){
+        if (!isset($locale)) {
             $locale = config('app.locale');
         }
 
         config(['app.locale' => $locale]);
-        
+
         $response = $next($request);
         $response->headers->set('Content-Language', $locale);
         return $response;

@@ -19,7 +19,7 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring, dom, fileinfo, pdo_mysql, exif, pcntl, bcmath, gd, xsl
           coverage: xdebug, #optional
-          tools: php-cs-fixer, phplint
+          tools: php-cs-fixer
       - name: Get composer cache directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
@@ -35,5 +35,14 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
       - name: Prepare the application
         run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
+      - name: Create DB and schemas
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+          php artisan migrate
       - name: Test with phpunit
         run: composer testco
+      - name: Test with phplint
+        run: composer phplint
+      - name: Test with phpcs
+        run: composer phpcs

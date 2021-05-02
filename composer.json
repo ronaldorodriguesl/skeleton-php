@@ -20,7 +20,6 @@
         "phpunit/phpunit": "^9.3",
         "overtrue/phplint": "^2.3",
         "phploc/phploc": "^7.0",
-        "phpmd/phpmd": "^2.10",
         "sebastian/phpcpd": "^6.0",
         "squizlabs/php_codesniffer": "3.*"
     },
@@ -51,7 +50,6 @@
         "phpcbf": "./vendor/bin/phpcbf --standard=PSR12 app",
         "phpcpd": "./vendor/bin/phpcpd app --fuzzy --progress",
         "phploc": "./vendor/bin/phploc app",
-        "phpmd" : "./vendor/bin/phpmd app text cleancode,codesize,controversial,design,naming,unusedcode",
         "phplint": "./vendor/bin/phplint",
         "test": "./vendor/bin/phpunit --no-coverage",
         "testco": "./vendor/bin/phpunit  --coverage-text"

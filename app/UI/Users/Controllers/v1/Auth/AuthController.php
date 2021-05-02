@@ -27,13 +27,13 @@ class AuthController extends Controller
         dd($request);
     }
 
-    public function users(Request $request): UserCollection
+    public function users(): UserCollection
     {
         $collection = $this->userRepository->findByFilters();
         return $this->respondWithCollection($collection);
     }
 
-    public function lang(Request $request): string|array|null
+    public function lang(): string|array|null
     {
         return __('Hello');
     }

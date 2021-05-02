@@ -2,7 +2,7 @@
 
 namespace App\Domain\Users\Database\Factories;
 
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Hashing\BcryptHasher;
 use App\Domain\Users\Entities\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name,
             'login' => $this->faker->username,
             'active' => $this->faker->boolean($chanceOfGettingTrue),
-            'password' =>  Hash::make('secret'),
+            'password' =>  (new BcryptHasher())->make('secret'),
         ];
     }
 }
