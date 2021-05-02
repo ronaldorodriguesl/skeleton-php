@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <coverage processUncoveredFiles="true">
+        <include>
+        <directory suffix=".php">./app</directory>
+        </include>
+        <exclude>
+        <directory suffix="Seed.php">./app/Domain</directory>
+        <directory suffix="Policy.php">./app/Domain</directory>
+        <directory suffix="Test.php">./app/Domain</directory>
+        </exclude>
+        <report>
+        <clover outputFile="./tests/coverage/coverage.xml"/>
+        <html outputDirectory="./tests/coverage" lowUpperBound="50" highLowerBound="80"/>
+        </report>
+    </coverage>
+
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./app/Domain/*/Tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./app/Domain/*/Tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+    </php>
+</phpunit>
