@@ -80,7 +80,8 @@ $app->configure('query-builder');
 |
 */
 $app->middleware([
-    App\UI\Http\Middleware\SetLocale::class
+    App\UI\Http\Middleware\SetLocale::class,
+    App\UI\Http\Middleware\ForceAcceptJson::class
 ]);
 
 // $app->routeMiddleware([
